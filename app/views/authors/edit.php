@@ -1,0 +1,55 @@
+<?php
+/**
+ * Vista para editar un autor
+ * Formulario para editar un autor
+ */
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar Autor - Sistema de Biblioteca</title>
+</head>
+<body>
+    <header>
+        <h1>Sistema de Biblioteca</h1>
+    </header>
+
+    <nav>
+        <a href="?route=dashboard">Inicio</a>
+        <a href="?route=books/list">Libros</a>
+        <a href="?route=books/create">Agregar Libro</a>
+        <a href="?route=authors/list">Autores</a>
+        <a href="?route=authors/create">Agregar Autor</a>
+        <a href="?route=loans/list">Préstamos</a>
+        <a href="?route=loans/create">Nuevo Préstamo</a>
+        <a href="?route=auth/logout">Salir</a>
+    </nav>
+
+    <div class="container">
+        <div class="card" style="max-width: 600px;">
+            <h2>Editar Autor</h2>
+
+            <?php if (!empty($error)): ?>
+                <div class="alert alert-error"><?php echo $error; ?></div>
+            <?php endif; ?>
+
+            <form method="POST" action="?route=authors/update/<?php echo $author['authorId']; ?>">
+                <div class="form-group">
+                    <label for="authorName">Nombre del Autor</label>
+                    <input type="text" id="authorName" name="authorName" value="<?php echo $author['authorName']; ?>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="biography">Biografía</label>
+                    <textarea id="biography" name="biography"><?php echo $author['biography']; ?></textarea>
+                </div>
+
+                <button type="submit">Actualizar Autor</button>
+                <a href="?route=authors/list" style="margin-left: 10px; text-decoration: none; color: #3498db;">Cancelar</a>
+            </form>
+        </div>
+    </div>
+
+   
+</body>
+</html>
